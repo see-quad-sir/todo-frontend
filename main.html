@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+<input id="theme" type="checkbox" onchange="writeThemeStateInCookie()">
+<header>
+    <h1>TODO APP</h1>
+    <label id="theme_switcher" for="theme">
+        <i id="theme_switcher_icon" class="material-icons" title="テーマ切替">light_mode</i>
+    </label>
+</header>
+<div id="flex">
+    <div id="todo_list"></div>
+    <div id="icons">
+        <i class="material-icons" onclick="moveToNewCreateMode()" title="Todo作成">edit</i>
+        <i id="trash_icon" class="material-icons" onclick="switchDeleteMode()" title="Todo削除">delete</i>
+    </div>
+    <div id="editor_popup">
+        <div id="editor_content">
+            <a id="close" onclick="closePopup()">&times;</a>
+            <form id="edit_form" autocomplete="off" action="/">
+                <label for="title">タイトル</label>
+                <br>
+                <input type="text" id="title" minlength="1" oninput="countTitleLength()">
+                <br>
+                <div id="title_counter">
+                    <span id="title_length">0</span>/100
+                </div>
+                <label for="detail">詳細</label>
+                <br>
+                <textarea id="detail" rows="15" oninput="countDetailLength()"></textarea>
+                <br>
+                <div id="detail_counter">
+                    <span id="detail_length">0</span>/1000
+                </div>
+                <label for="date">日付</label>
+                <br>
+                <input type="date" id="date">
+                <br><br><br>
+                <div id="button">
+                    <input type="button" id="btn_upload" value="登録" onclick="uploadTodo()" disabled/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="snackbar">Sample message</div>
+
+<dialog id="dialog">
+    <p id="dialog_title">エラー</p>
+    <div id="dialog_msg">Sample message</div>
+    <form method="dialog">
+        <button id="dialog_btn_cancel">キャンセル</button>
+        <button id="dialog_btn_confirm">OK</button>
+    </form>
+</dialog>
+</body>
+</html>
